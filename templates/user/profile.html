@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    <title>Profil</title>
+{% endblock title %}
+
+
+
+{% block content %}
+    <div class="d-flex">
+        <img src="{{profil.image.url}}" alt="" width="70" height="70" class="rounded-5">
+        <div class="profil-info ms-2 mt-2">
+            <h5 class="text-capitalize">{{profil.user.username}}</h5>
+            <p>{{profil.bio}}</p>
+        </div>
+    </div>
+    <div class="info">
+        <p class="text-muted text-capitalize">Katılma Tarihi : {{profil.created_at|naturalday}}</p>
+    </div>
+
+
+
+    <div class="container mt-5">
+        <div class="row">
+            
+            {% for i in blogs %}
+                {% include 'partials/_card.html' %}
+            {% endfor %}
+                
+        </div>
+    </div>
+{% endblock content %}
+    
+    

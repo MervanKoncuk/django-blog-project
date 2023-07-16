@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block title %}
+    <title>Kayıt Ol</title>
+{% endblock title %}
+    
+
+{% block content %}
+<style>
+    .helptext ul {
+        padding: 0;
+        list-style: none;
+    }
+    .errorlist{
+        padding: 0;
+        list-style: none;
+        color: red;
+        font-weight: bold;
+    }
+    
+</style>
+    <form method="POST" class="w-50 m-auto border p-4">
+        {% csrf_token %} 
+        {{form}}
+        <input type="submit" value="Kayıt Ol" class="btn btn-primary mt-2">
+    </form>
+{% endblock content %}
+    

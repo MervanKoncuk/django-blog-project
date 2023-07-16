@@ -1,0 +1,28 @@
+{% load humanize %}
+<div class="col-4">
+    <div class="card">
+        
+        {% if i.image %}
+            <img src="{{i.image.url}}" height="250" class="card-img-top" alt="...">  
+        {% else %}
+            <p>Resim Yok</p>
+        {% endif %}
+            
+        
+        <div class="card-body">
+          <h5 class="card-title">{{i.title}}</h5>
+          <small>{{i.kategori.name}}</small>
+          <br>
+          
+          {% for j in i.alt.all %}
+          <small>{{j.name}}</small>
+          {% endfor %}
+            
+          <p class="card-text">{{i.content}}</p>
+          <small class="text-capitalize">{{i.created_at|naturalday}}</small>
+          <br>
+          <a href="{% url 'detail' i.id %}" class="btn btn-primary">Go somewhere</a>
+          <a href="/blog-detail/{{i.id}}" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+</div>

@@ -1,0 +1,5 @@
+messages : from django.contrib import messages
+User : from django.contrib.auth.models import User
+creationForm : from django.contrib.auth.forms import UserCreationForm
+modelform : from django.forms import ModelForm
+login-logout-authenticate : from django.contrib.auth import authenticate, login, logout
