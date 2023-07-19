@@ -1,0 +1,4 @@
+# şifre değiştirme
+# profil bilgileri güncelleme 
+# mail gönderme
+# şifremi unuttum

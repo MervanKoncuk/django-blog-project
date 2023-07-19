@@ -9,7 +9,7 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ['owner__username']
     date_hierarchy = 'created_at'
     # list_editable = ['content']
-    readonly_fields = ['created_at']
+    readonly_fields = ['created_at', 'slug']
     list_per_page = 3
     
 

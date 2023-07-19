@@ -17,6 +17,9 @@
         background-color: red;
         color: white;
       }
+      .active {
+        border-bottom: 1px solid white;
+      }
     </style>
 </head>
 <body data-bs-theme="dark">
@@ -43,7 +46,7 @@
         <div class="row">
           
             {% for i in blogs %}
-                {% include '_partials/_card.html' %}
+                {% include 'partials/_card.html' %}
             {% empty %}
             <h1 class="text-center">Blog Bulunmadı</h1>
             {% endfor %}

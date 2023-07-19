@@ -9,11 +9,36 @@
 
 
 {% block content %}
-    <div class="d-flex">
-        <img src="{{profil.image.url}}" alt="" width="70" height="70" class="rounded-5">
-        <div class="profil-info ms-2 mt-2">
-            <h5 class="text-capitalize">{{profil.user.username}}</h5>
-            <p>{{profil.bio}}</p>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex">
+            <img src="{{profil.image.url}}" alt="" width="70" height="70" class="rounded-5">
+            <div class="profil-info ms-2 mt-2">
+                <h5 class="text-capitalize">{{profil.user.username}}</h5>
+                <p>{{profil.bio}}</p>
+            </div>
+        </div>
+        <div>
+            {% if request.user.profile != profil %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="submit" name="follow" 
+                    
+                    {% comment %}
+                        aşağıdaki if bu kullanıcıyı takip edip etmediğimizi sorgular
+                        Karşı tarafın takipçilerinde benim profilim var mı ?
+                    {% endcomment %}
+                    {% if request.user.profile in profil.follower.all %}
+                    value="Takipten Çık"
+                    {% else %}
+                    value="Takip Et" 
+                    {% endif %}
+                        
+                    class="btn btn-primary mt-2">
+                </form>
+            {% endif %}
+            <br>
+            <small>Takip : {{profil.follow.all.count}}</small>
+            <small>Takipçiler : {{profil.follower.all.count}}</small>
         </div>
     </div>
     <div class="info">

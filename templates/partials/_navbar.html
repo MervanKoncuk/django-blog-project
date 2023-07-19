@@ -7,29 +7,58 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a 
+            
+            {% if request.path == '/' %}
+            class="nav-link active" 
+            {% else %}
+            class="nav-link" 
+            {% endif %}
+              
+            aria-current="page" href="/">Home</a>
           </li>
           
           
           {% if user.is_authenticated %}
 
           <li class="nav-item">
-            <a class="nav-link" href="/profile/">{{request.user}}</a>
+            <a class="nav-link" href="/user/profile/{{request.user.profile.id}}">{{request.user}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/olustur/">Oluştur</a>
+            <a 
+            {% if request.path == '/olustur/' %}
+            class="nav-link active" 
+            {% else %}
+            class="nav-link" 
+            {% endif %}
+
+            href="/olustur/">Oluştur</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout/">Çıkış Yap</a>
+            <a class="nav-link" href="/user/logout/">Çıkış Yap</a>
           </li>
 
           {% else %}
 
           <li class="nav-item">
-            <a class="nav-link" href="/login/">Giriş Yap</a>
+            <a 
+            {% if request.path == '/user/login/' %}
+            class="nav-link active" 
+            {% else %}
+            class="nav-link" 
+            {% endif %}
+            href="{% url 'login' %}">Giriş Yap</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/register/">Kayıt Ol</a>
+            <a 
+            
+            {% if request.path == '/user/register/' %}
+            class="nav-link active" 
+            {% else %}
+            class="nav-link" 
+            {% endif %}
+
+            href="/user/register/">Kayıt Ol</a>
           </li>
 
           {% endif %}

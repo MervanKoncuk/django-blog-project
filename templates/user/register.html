@@ -22,9 +22,26 @@
     }
     
 </style>
-    <form method="POST" class="w-50 m-auto border p-4">
+    <form method="POST" enctype="multipart/form-data" class="w-50 m-auto border p-4">
         {% csrf_token %} 
-        {{form}}
+        <label for="">Kullanıcı Adı </label>
+        <input type="text" name="username" value="{{username}}" id="" class="form-control">
+
+        <label for="">Email</label>
+        <input type="email" name="email" id="" value="{{email}}" class="form-control" >
+
+        <label for="">Resim</label>
+        <input type="file" name="image" id="" class="form-control">
+
+        <label for="">Hakkımda</label>
+        <textarea name="bio" id="" cols="30" rows="10" class="form-control">{{bio_form}}</textarea>
+
+        <label for="">Şifre</label>
+        <input type="password" name="password1" id="" class="form-control">
+
+        <label for="">Şifre onay</label>
+        <input type="password" name="password2" id="" class="form-control">
+
         <input type="submit" value="Kayıt Ol" class="btn btn-primary mt-2">
     </form>
 {% endblock content %}
