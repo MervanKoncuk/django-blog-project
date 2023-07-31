@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block title %}
+    <title>Profil Bilgilerini Güncelle</title>
+{% endblock title %}
+    
+
+{% block content %}
+
+    <form method="POST" enctype="multipart/form-data" class="w-50 m-auto border p-4">
+        {% csrf_token %} 
+        {{userForm.as_p}}
+        {{profilForm.as_p}}
+        <input type="submit" value="Güncelle" class="btn btn-primary mt-2">
+    </form>
+{% endblock content %}
+    

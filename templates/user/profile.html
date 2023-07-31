@@ -35,6 +35,10 @@
                         
                     class="btn btn-primary mt-2">
                 </form>
+            {% else %}
+            <a href="/user/update/" class="btn btn-primary">Profil Güncelle</a>
+            <a href="/user/change-password/" class="btn btn-primary">Şifrenizi Değiştirin</a>
+
             {% endif %}
             <br>
             <small>Takip : {{profil.follow.all.count}}</small>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserForm
+from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import *
@@ -120,3 +120,46 @@ def profile(request, profilId):
         'blogs':blogs
     }
     return render(request, 'user/profile.html', context)
+
+
+def update(request):
+    profilForm = ProfilForm(instance = request.user.profile)
+    userForm = ChangeUserForm(instance = request.user)
+    if request.method == 'POST':
+        profilForm = ProfilForm(request.POST, request.FILES, instance=request.user.profile)
+        userForm = ChangeUserForm(request.POST, instance = request.user)
+        if profilForm.is_valid() and userForm.is_valid():
+            profilForm.save()
+            userForm.save()
+
+            messages.success(request, 'Profil Güncellendi')
+            return redirect('profile', profilId = request.user.profile.id)
+    context = {
+        'profilForm':profilForm,
+        'userForm':userForm
+    }
+    return render(request, 'user/update.html', context)
+
+
+def change(request):
+    if request.method == 'POST':
+        current = request.POST.get('old')
+        new = request.POST.get('new')
+        new2 = request.POST.get('new2')
+
+        user = authenticate(request, username = request.user, password = current)
+        
+        if user is not None:
+            if new == new2:
+                currentUser = request.user
+                currentUser.set_password(new)
+                currentUser.save()
+                messages.success(request, 'Şifreniz güncellendi. Tekrar giriş yapmanız gerekiyor')
+                return redirect('login')
+            else:
+                messages.error(request, 'Şifreleriniz uyuşmuyor')
+        else:
+            messages.error(request, 'Mevcut şifreniz hatalı')
+            return redirect('change')
+    return render(request, 'user/change_password.html')
+        
