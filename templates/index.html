@@ -27,7 +27,7 @@
     
     {% include 'partials/_navbar.html' %}
 
-    
+    <!-- Mesajlar -->
     {% if messages %}
       
       {% for mesaj in messages %}
@@ -39,12 +39,12 @@
     {% endif %}
       
 
-
+        <!-- Container -->
     <div class="container mt-5">
       {% block content %}
         <div class="row">
           
-        
+          <!-- Kartlar - Gönderiler -->
             {% for i in blogs %}
                 {% include 'partials/_card.html' %}
             {% empty %}
